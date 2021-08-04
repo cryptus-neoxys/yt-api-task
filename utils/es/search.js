@@ -10,15 +10,19 @@ async function runSearch(searchQuery, pageNumber, pageSize) {
     sort: "publishedAt:desc",
     body: {
       query: {
-        match: {
-          title: searchQuery,
+        multi_match: {
+          query: searchQuery,
+          fields: ["title", "description"],
+          type: "best_fields",
+          // tie_breaker can optionally be enabled
+          // to include all fields
+          // tie_breaker: 0.2,
         },
       },
     },
   });
 
-  console.log(body.hits.hits);
-  return body.hits.hits;
+  return { hits: body.hits.hits, total: body.hits.total.value };
 }
 
 module.exports = {

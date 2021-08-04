@@ -6,10 +6,13 @@ const searchVideos = async (req, res) => {
   const pageSize = req.query.s;
 
   try {
-    let result = await runSearch(searchQuery, pageNumber, pageSize);
+    const { hits, total } = await runSearch(searchQuery, pageNumber, pageSize);
 
-    // result = result.map(res => )
-    res.send({ success: true });
+    const data = hits.map((doc) => doc._source);
+    const hasNext = pageNumber * pageSize < total;
+    res
+      .status(200)
+      .json({ success: true, pageNumber, pageSize, hasNext, total, data });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ success: false });
