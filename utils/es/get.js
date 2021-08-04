@@ -1,7 +1,7 @@
 const { Client } = require("@elastic/elasticsearch");
 const client = new Client({ node: "http://elasticsearch:9200" });
 
-async function runSearch(searchQuery, pageNumber, pageSize) {
+async function runGet(pageNumber, pageSize) {
   // Let's search!
   const { body } = await client.search({
     index: "videos",
@@ -10,14 +10,7 @@ async function runSearch(searchQuery, pageNumber, pageSize) {
     sort: "publishedAt:desc",
     body: {
       query: {
-        multi_match: {
-          query: searchQuery,
-          fields: ["title", "description"],
-          type: "best_fields",
-          // tie_breaker can optionally be enabled
-          // to include all fields
-          // tie_breaker: 0.2,
-        },
+        match_all: {},
       },
     },
   });
@@ -27,5 +20,5 @@ async function runSearch(searchQuery, pageNumber, pageSize) {
 }
 
 module.exports = {
-  runSearch,
+  runGet,
 };

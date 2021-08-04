@@ -5,7 +5,7 @@ var cron = require("node-cron");
 
 const { fetchVideos } = require("./schedulers/yt-fetch");
 const { bulkInsert } = require("./utils/es/insert");
-const { searcher } = require("./routes/search");
+const { videos } = require("./routes/video");
 
 // Runs a fetch every minute
 let cc = 0;
@@ -32,9 +32,12 @@ app.use(express.json());
 app.enable("trust proxy");
 
 app.get("/api", (req, res) => {
-  res.send({ message: "Hi 👋🏻" });
+  res.send({
+    message:
+      "Hi 👋🏻, welcome to the YT Search API, go to /api/video/search?q=musics=3&p=1",
+  });
 });
 
-app.use("/api", searcher);
+app.use("/api/video", videos);
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
