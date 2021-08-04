@@ -29,6 +29,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.enable("trust proxy");
 
 app.get("/api", (req, res) => {
   res.send({ message: "Hi 👋🏻" });
