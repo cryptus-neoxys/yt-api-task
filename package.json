@@ -1,0 +1,29 @@
+{
+  "name": "yt-api-task",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptus-neoxys/yt-api-task.git"
+  },
+  "author": "Dev Sharma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cryptus-neoxys/yt-api-task/issues"
+  },
+  "homepage": "https://github.com/cryptus-neoxys/yt-api-task#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "nodemon": "^2.0.12"
+  }
+}
