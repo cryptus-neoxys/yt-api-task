@@ -15,7 +15,6 @@ async function runGet(pageNumber, pageSize) {
     },
   });
 
-  client.close();
   return { hits: body.hits.hits, total: body.hits.total.value };
 }
 

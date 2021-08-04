@@ -21,7 +21,6 @@ const task = cron.schedule("0 */2 * * *", async () => {
     task.stop();
   }
 });
-// bulkInsert();
 
 const PORT = process.env.PORT || 4000;
 
