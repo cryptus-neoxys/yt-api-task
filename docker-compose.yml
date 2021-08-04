@@ -30,14 +30,6 @@ services:
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
 
-  kibana:
-    container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.4.0
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    depends_on:
-      - elasticsearch
-
 volumes:
   elasticsearch-data:
     driver: local
