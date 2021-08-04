@@ -4,28 +4,29 @@ let currKeyIndex = 0;
 const API_KEYS = process.env.YT_API_API_KEYS.split(", ");
 let key = API_KEYS[currKeyIndex];
 
-const fetchVideos = async () => {
+const fetchVideos = async (lastLatest) => {
   try {
+    console.log("fetch video: ");
     const res = await axiosInstance.get(
       `https://www.googleapis.com/youtube/v3/search`,
       {
         params: {
           part: "snippet",
-          maxResults: 10,
-          publishedAfter: "2021-01-01T0:0:0Z",
+          maxResults: 50,
+          publishedAfter: lastLatest,
           order: "date",
-          q: "javascript",
+          q: "official",
           key,
         },
       }
     );
 
-    console.log(JSON.parse(JSON.stringify(res.data)));
+    // console.trace(res.data);
     return [res.data, null];
   } catch (err) {
     console.error(err.data);
     key = API_KEYS[++currKeyIndex];
-    if (currKeyIndex <= API_KEYS.length) fetchVideos();
+    if (currKeyIndex <= API_KEYS.length) return await fetchVideos();
     else return [null, err];
   }
 };

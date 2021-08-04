@@ -1,7 +1,26 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+var cron = require("node-cron");
+
 const { fetchVideos } = require("./schedulers/yt-fetch");
+const { bulkInsert } = require("./utils/es/insert");
+
+// Runs a fetch every minute
+let cc = 0;
+let lastLatest = "2021-02-01T00:00:00Z";
+const task = cron.schedule("*/6 * * * *", async () => {
+  console.log("cron job: ", ++cc);
+  const [res, err] = await fetchVideos(lastLatest);
+  if (res) {
+    bulkInsert(res);
+    lastLatest = res.items[0].snippet.publishedAt;
+  } else if (err) {
+    console.error(err);
+    task.stop();
+  }
+});
+// bulkInsert();
 
 const PORT = process.env.PORT || 4000;
 
