@@ -7,10 +7,10 @@ const { fetchVideos } = require("./schedulers/yt-fetch");
 const { bulkInsert } = require("./utils/es/insert");
 const { videos } = require("./routes/video");
 
-// Runs a fetch every minute
+// Runs a fetch every 2 minutes
 let cc = 0;
 let lastLatest = "2021-02-01T00:00:00Z";
-const task = cron.schedule("0 */2 * * *", async () => {
+const task = cron.schedule("*/2 * * * *", async () => {
   console.log("cron job: ", ++cc);
   const [res, err] = await fetchVideos(lastLatest);
   if (res) {
@@ -18,7 +18,8 @@ const task = cron.schedule("0 */2 * * *", async () => {
     lastLatest = res.items[0].snippet.publishedAt;
   } else if (err) {
     console.error(err);
-    task.stop();
+    // can stop tasks, if failing
+    // task.stop();
   }
 });
 
