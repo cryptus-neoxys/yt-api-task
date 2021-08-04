@@ -5,11 +5,12 @@ var cron = require("node-cron");
 
 const { fetchVideos } = require("./schedulers/yt-fetch");
 const { bulkInsert } = require("./utils/es/insert");
+const { searcher } = require("./routes/search");
 
 // Runs a fetch every minute
 let cc = 0;
 let lastLatest = "2021-02-01T00:00:00Z";
-const task = cron.schedule("*/6 * * * *", async () => {
+const task = cron.schedule("0 */2 * * *", async () => {
   console.log("cron job: ", ++cc);
   const [res, err] = await fetchVideos(lastLatest);
   if (res) {
@@ -33,16 +34,6 @@ app.get("/api", (req, res) => {
   res.send({ message: "Hi 👋🏻" });
 });
 
-app.get("/api/video", async (req, res) => {
-  try {
-    const [videos, err] = await fetchVideos();
-    if (!err) {
-      res.send({ videos });
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "failed" });
-  }
-});
+app.use("/api", searcher);
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
