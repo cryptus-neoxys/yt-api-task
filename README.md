@@ -57,6 +57,7 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 | s     | page size   | true     | int    |
 | q     | search term | true     | string |
 
+# Tech Stack
 # Reference:
 
 - YouTube data v3 API: [https://developers.google.com/youtube/v3/getting-started](https://developers.google.com/youtube/v3/getting-started)
