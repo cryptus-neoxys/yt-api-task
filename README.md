@@ -14,22 +14,29 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
   - endpoint: /api/video/search
   - sample query: http://localhost/api/video/search?s=music&p=2&s=3
 - ✅ Dockerize the project.
+  - run using docker-compose
 - ✅ It should be scalable and optimised.
 
 # Bonus Points:
 
 - ✅ Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
+  - can cycle through multiple API keys when current key gets exhausted
 - 🚧 Make a dashboard to view the stored videos with filters and sorting options (optional)
 - ✅ Optimise search api, so that it's able to search videos containing partial match for the search query in either video title or description.
+  - using industry standard elastic search with full text search and partial match capabilities
 
 # Instructions
 
-- Clone the repo `git clone https://github.com/cryptus-neoxys/yt-api-task.git`
+- Clone the repo 
+
+`git clone https://github.com/cryptus-neoxys/yt-api-task.git`
 - Open directory in terminal `cd yt-api-task`
 - copy .env file `cp .env.example .env`
 - Add the API KEYS in .env file
-- Run docker compose (.dev to explore with Kibana 🤷‍♂️) `docker-compose -f docker-compose.yml -f docker.compose.prod.yml`
-- Project should be running via nginx on `PORT`:80 (default http port)
+- Run docker compose (use .dev.yml for exploring with Kibana 🤷‍♂️)
+
+`docker-compose -f docker-compose.yml -f docker.compose.prod.yml up -d`
+- Project should be running via nginx proxy on `PORT:80` (default http port)
 - Go to http://localhost/api
 
 ## API
@@ -58,6 +65,16 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 | q     | search term | true     | string |
 
 # Tech Stack
+
+<p align="left">
+        <a href="https://www.docker.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
+        <a href="https://www.elastic.co" target="_blank"> <img src="https://www.vectorlogo.zone/logos/elastic/elastic-icon.svg" alt="elasticsearch" width="40" height="40"/> </a>
+        <a href="https://expressjs.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>
+        <a href="https://www.nginx.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="40" height="40"/> </a>
+        <a href="https://nodejs.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
+</p>
+
 # Reference:
 
 - YouTube data v3 API: [https://developers.google.com/youtube/v3/getting-started](https://developers.google.com/youtube/v3/getting-started)
