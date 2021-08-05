@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 var cron = require("node-cron");
 
-const { fetchVideos } = require("./schedulers/yt-fetch");
+const { fetchVideos } = require("./schedulers/ytFetch");
 const { bulkInsert } = require("./utils/es/insert");
 const { videos } = require("./routes/video");
 
