@@ -7,13 +7,13 @@ const { fetchVideos } = require("./schedulers/ytFetch");
 const { bulkInsert } = require("./utils/es/insert");
 const { videos } = require("./routes/video");
 
-// Runs a fetch every 2 minutes
+// Runs a fetch every minute
 // updates lastLatest video to
 // prev latest video's publishedAt timestamp
 // next request goes to fetch latest videos
 let cc = 0;
 let lastLatest = "2021-02-01T00:00:00Z";
-const task = cron.schedule("*/2 * * * *", async () => {
+const task = cron.schedule("* * * * *", async () => {
   console.log("cron job: ", ++cc);
   const [res, err] = await fetchVideos(lastLatest);
   if (res) {

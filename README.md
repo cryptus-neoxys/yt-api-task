@@ -28,7 +28,7 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 - Open directory in terminal `cd yt-api-task`
 - copy .env file `cp .env.example .env`
 - Add the API KEYS in .env file
-- Run docker compose (.dev to explore with Kibana 🤷‍♂️) `docker-compose -f docker-compose.yml -f docker.compose.prod.yml`
+- Run docker compose `docker-compose -f docker-compose.yml -f docker.compose.dev.yml`
 - Project should be running via nginx on `PORT`:80 (default http port)
 - Go to http://localhost/api
 
