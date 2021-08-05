@@ -14,6 +14,7 @@ const fetchVideos = async (lastLatest) => {
       {
         params: {
           part: "snippet",
+          type: "video",
           maxResults: 50,
           publishedAfter: lastLatest,
           order: "date",
