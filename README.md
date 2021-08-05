@@ -36,7 +36,7 @@ Pre-requisites: docker and docker compose installed.
 - Run docker compose `docker-compose -f docker-compose.yml -f docker.compose.dev.yml up -d`
 - Project should be running via nginx proxy on `PORT:80` (default http port)
 - Go to http://localhost/api
-- To stop the project run `docker-compose -f docker-compose.yml -f docker.compose.dev.yml down`
+- To stop the project run `docker-compose -f docker-compose.yml -f docker-compose.dev.yml down`
 
 ## API
 
