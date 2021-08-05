@@ -1,5 +1,4 @@
-const { runGet } = require("../utils/es/get");
-const { runSearch } = require("../utils/es/search");
+const { runGet, runSearch } = require("../utils/es");
 
 const searchVideos = async (req, res) => {
   const searchQuery = req.query.q;

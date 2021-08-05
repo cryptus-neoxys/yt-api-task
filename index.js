@@ -4,7 +4,7 @@ const cors = require("cors");
 var cron = require("node-cron");
 
 const { fetchVideos } = require("./schedulers/ytFetch");
-const { bulkInsert } = require("./utils/es/insert");
+const { bulkInsert } = require("./utils/es");
 const { videos } = require("./routes/video");
 
 // Runs a fetch every minute
