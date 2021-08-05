@@ -37,7 +37,7 @@ app.enable("trust proxy");
 app.get("/api", (req, res) => {
   res.send({
     message:
-      "Hi 👋🏻, welcome to the YT Search API, go to /api/video/search?q=musics=3&p=1",
+      "Hi 👋🏻, welcome to the YT Search API, go to /api/video/search?q=music&s=3&p=1",
   });
 });
 

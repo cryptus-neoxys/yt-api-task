@@ -4,6 +4,9 @@
 
 To make an API to fetch latest videos sorted in reverse chronological order of their publishing date-time from YouTube for a given tag/search query in a paginated response.
 
+The API is hosted at [http://167.71.227.201/api/](http://167.71.227.201/api/)
+(15 minute update cycle)
+
 # ✅ Basic Requirements:
 
 - ✅ Server should call the YouTube API continuously in background (async) with some interval (using 1 minute) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs) in a database with proper indexes.
